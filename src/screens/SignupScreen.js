@@ -1,7 +1,181 @@
 import React from "react";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
-import { PlaceholderScreen } from "../components";
+import { AppScreen, PrimaryButton } from "../components";
+import { colors, layout, typography } from "../theme";
 
-export function SignupScreen() {
-  return <PlaceholderScreen title="회원가입" />;
+export function SignupScreen({ onBackPress }) {
+  return (
+    <AppScreen>
+      <View style={styles.header}>
+        <Pressable
+          accessibilityLabel="뒤로가기"
+          hitSlop={8}
+          onPress={onBackPress}
+          style={styles.backButton}
+        >
+          <Text style={styles.backIcon}>‹</Text>
+        </Pressable>
+        <Text style={styles.title}>회원가입</Text>
+      </View>
+
+      <View style={styles.content}>
+        <View style={styles.emailGroup}>
+          <View style={styles.row}>
+            <SignupInput
+              autoCapitalize="none"
+              autoComplete="email"
+              keyboardType="email-address"
+              placeholder="이메일 *"
+              style={styles.flexInput}
+            />
+            <SideButton>인증</SideButton>
+          </View>
+          <View style={styles.row}>
+            <SignupInput
+              keyboardType="number-pad"
+              placeholder="인증번호 입력 *"
+              style={styles.flexInput}
+            />
+            <SideButton>확인</SideButton>
+          </View>
+        </View>
+
+        <View style={styles.passwordGroup}>
+          <SignupInput
+            autoCapitalize="none"
+            autoComplete="password"
+            placeholder="비밀번호 *"
+            secureTextEntry
+          />
+          <SignupInput
+            autoCapitalize="none"
+            autoComplete="password"
+            placeholder="비밀번호 확인 *"
+            secureTextEntry
+          />
+        </View>
+
+        <Text style={styles.helper}>
+          (영문 대소 문자/숫자/특수 문자 중 2가지 이상 조합, 8자-16자)
+        </Text>
+
+        <SignupInput placeholder="닉네임" style={styles.nicknameInput} />
+      </View>
+
+      <View style={styles.footer}>
+        <PrimaryButton style={styles.nextButton} textStyle={styles.nextText}>
+          다음
+        </PrimaryButton>
+      </View>
+    </AppScreen>
+  );
 }
+
+function SignupInput({ style, ...props }) {
+  return (
+    <TextInput
+      placeholderTextColor={colors.gray06}
+      style={[styles.input, style]}
+      {...props}
+    />
+  );
+}
+
+function SideButton({ children }) {
+  return (
+    <Pressable style={styles.sideButton}>
+      <Text style={styles.sideButtonText}>{children}</Text>
+    </Pressable>
+  );
+}
+
+const styles = StyleSheet.create({
+  header: {
+    height: 40,
+    paddingHorizontal: layout.screenMargin,
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: colors.gray04,
+    backgroundColor: colors.white,
+  },
+  backButton: {
+    width: 28,
+    height: 40,
+    justifyContent: "center",
+  },
+  backIcon: {
+    color: colors.gray07,
+    fontSize: 30,
+    fontWeight: "400",
+    lineHeight: 34,
+  },
+  title: {
+    ...typography.head01Sb,
+    color: colors.gray09,
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: layout.screenMargin,
+    paddingTop: 54,
+  },
+  emailGroup: {
+    height: 116,
+    gap: 8,
+  },
+  row: {
+    flex: 1,
+    flexDirection: "row",
+    gap: 8,
+  },
+  flexInput: {
+    flex: 1,
+  },
+  input: {
+    height: 54,
+    paddingHorizontal: 16,
+    borderWidth: 1,
+    borderColor: colors.gray04,
+    borderRadius: 8,
+    backgroundColor: colors.gray02,
+    color: colors.gray09,
+    ...typography.body01Sb,
+  },
+  sideButton: {
+    width: 76,
+    height: 54,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 8,
+    backgroundColor: colors.gray04,
+  },
+  sideButtonText: {
+    ...typography.body02M,
+    color: colors.gray07,
+  },
+  passwordGroup: {
+    marginTop: 30,
+    gap: 8,
+  },
+  helper: {
+    marginTop: 8,
+    ...typography.caption02M,
+    color: colors.gray07,
+  },
+  nicknameInput: {
+    marginTop: 30,
+  },
+  footer: {
+    paddingHorizontal: layout.screenMargin,
+    paddingBottom: 64,
+  },
+  nextButton: {
+    height: 48,
+    borderRadius: 24,
+  },
+  nextText: {
+    ...typography.body01Sb,
+    color: colors.white,
+  },
+});

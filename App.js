@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { LoginScreen } from "./src/screens";
+import { LoginScreen, SignupScreen } from "./src/screens";
 
 export default function App() {
-  return <LoginScreen />;
+  const [screen, setScreen] = useState("login");
+
+  if (screen === "signup") {
+    return <SignupScreen onBackPress={() => setScreen("login")} />;
+  }
+
+  return <LoginScreen onSignupPress={() => setScreen("signup")} />;
 }

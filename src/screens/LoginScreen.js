@@ -10,7 +10,7 @@ import {
 import HomerunLogo from "../../assets/images/homerun_logo.svg";
 import { colors, layout, typography } from "../theme";
 
-export function LoginScreen() {
+export function LoginScreen({ onSignupPress }) {
   const [remember, setRemember] = useState(false);
 
   return (
@@ -51,7 +51,7 @@ export function LoginScreen() {
           </Pressable>
 
           <View style={styles.links}>
-            <Pressable>
+            <Pressable onPress={onSignupPress}>
               <Text style={styles.optionText}>회원가입</Text>
             </Pressable>
             <View style={styles.divider} />
