@@ -12,6 +12,9 @@ import { colors, layout, typography } from "../theme";
 
 export function LoginScreen({ onSignupPress }) {
   const [remember, setRemember] = useState(false);
+  const handleSignupPress = () => {
+    onSignupPress?.();
+  };
 
   return (
     <AppScreen>
@@ -51,11 +54,20 @@ export function LoginScreen({ onSignupPress }) {
           </Pressable>
 
           <View style={styles.links}>
-            <Pressable onPress={onSignupPress}>
+            <Pressable
+              accessibilityRole="button"
+              hitSlop={12}
+              onPress={handleSignupPress}
+              style={styles.linkButton}
+            >
               <Text style={styles.optionText}>회원가입</Text>
             </Pressable>
             <View style={styles.divider} />
-            <Pressable>
+            <Pressable
+              accessibilityRole="button"
+              hitSlop={12}
+              style={styles.linkButton}
+            >
               <Text style={styles.optionText}>비밀번호 찾기</Text>
             </Pressable>
           </View>
@@ -120,6 +132,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 11,
+  },
+  linkButton: {
+    minHeight: 32,
+    justifyContent: "center",
   },
   divider: {
     width: 1,

@@ -1,5 +1,11 @@
 import React from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 import { AppScreen, PrimaryButton } from "../components";
 import { colors, layout, typography } from "../theme";
@@ -7,6 +13,7 @@ import { colors, layout, typography } from "../theme";
 export function SignupScreen({ onBackPress }) {
   return (
     <AppScreen>
+      <View style={styles.statusSpacer} />
       <View style={styles.header}>
         <Pressable
           accessibilityLabel="뒤로가기"
@@ -91,6 +98,10 @@ function SideButton({ children }) {
 }
 
 const styles = StyleSheet.create({
+  statusSpacer: {
+    height: 40,
+    backgroundColor: colors.white,
+  },
   header: {
     height: 40,
     paddingHorizontal: layout.screenMargin,
@@ -113,12 +124,12 @@ const styles = StyleSheet.create({
   },
   title: {
     ...typography.head01Sb,
-    color: colors.gray09,
+    color: colors.black,
   },
   content: {
     flex: 1,
     paddingHorizontal: layout.screenMargin,
-    paddingTop: 54,
+    paddingTop: 24,
   },
   emailGroup: {
     height: 116,
@@ -155,7 +166,7 @@ const styles = StyleSheet.create({
     color: colors.gray07,
   },
   passwordGroup: {
-    marginTop: 30,
+    marginTop: 32,
     gap: 8,
   },
   helper: {
@@ -164,7 +175,7 @@ const styles = StyleSheet.create({
     color: colors.gray07,
   },
   nicknameInput: {
-    marginTop: 30,
+    marginTop: 32,
   },
   footer: {
     paddingHorizontal: layout.screenMargin,

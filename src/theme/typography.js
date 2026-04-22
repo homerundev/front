@@ -4,8 +4,10 @@ export const typography = {
   head01Sb: {
     fontFamily,
     fontSize: 20,
+    fontStyle: "normal",
     fontWeight: "600",
     lineHeight: 20,
+    letterSpacing: -0.2,
   },
   body01Sb: {
     fontFamily,
